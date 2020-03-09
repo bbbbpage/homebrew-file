@@ -102,6 +102,7 @@ script:
   - brew list
   - coverage run --parallel-mode $exe init -y
   - coverage run --parallel-mode $exe cat
+  - command brew update
   - coverage run --parallel-mode $exe update -y -V 2 # better to use verbose mode, because the update takes so long time that travis will end up with no output error if no output is written out at update...
   - HOMEBREW_BREWFILE_APPSTORE=true coverage run --parallel-mode $exe test -V 2
   - rm $brewfile
