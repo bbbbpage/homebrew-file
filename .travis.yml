@@ -67,6 +67,8 @@ install:
   - hash -r
   - 'brew upgrade $PYTHON_VERSION || :'
   - export PATH="$(brew --prefix)/opt/$PYTHON_VERSION/libexec/bin:$PATH"
+  - ls "$(brew --prefix)/opt/$PYTHON_VERSION/libexec/bin"
+  - pip install setuptools==45.0.0
   - '[ "$PYTHON_VERSION" = "python2" ] &&  pip install virtualenv|| :'
   - '[ "$PYTHON_VERSION" = "python2" ] &&  virtualenv -p python py_env|| :'
   - '[ "$PYTHON_VERSION" = "python3" ] &&  python -m venv py_env|| :'
