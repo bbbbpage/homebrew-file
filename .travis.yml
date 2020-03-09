@@ -69,9 +69,9 @@ install:
   - which python3
   - which pip3
   - type pip3
-  - pip3 install --upgrade pip3
-  - '[ "$coveralls" = "coveralls-python" ] && pip3 install coveralls || :'
-  - '[ "$coveralls" = "python-coveralls" ] && pip3 -e . --use-mirrors || :'
+  - pip install --upgrade pip
+  - '[ "$coveralls" = "coveralls-python" ] && pip install coveralls || :'
+  - '[ "$coveralls" = "python-coveralls" ] && pip -e . --use-mirrors || :'
   - which ruby
   - brew install ruby
   - hash -r
