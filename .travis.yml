@@ -25,7 +25,6 @@ env:
     #- coveralls=python-coveralls
     - CONFIGDIR="$HOME/.config/brewfile"
   matrix:
-    - PYTHON_VERSION="python2"
     - PYTHON_VERSION="python3"
 before_install:
   - echo $TRAVIS_PULL_REQUEST
@@ -57,29 +56,17 @@ install:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ];then git add -A && git commit -a -m "init" && git push -f || echo nothing to be done; fi'
   - cd ../homebrew-file
   - rm -rf ../$testrepo
-  - which python
-  - python --version
-  - 'brew rm --ignore-dependencies  mercurial || :'
-  - 'brew rm --ignore-dependencies python || :'
-  - 'brew rm --ignore-dependencies python2 || :'
-  - 'rm -rf /usr/local/lib/python2.7/ || :'
   - 'brew install $PYTHON_VERSION || :'
-  - hash -r
   - 'brew upgrade $PYTHON_VERSION || :'
-  - export PATH="$(brew --prefix)/opt/$PYTHON_VERSION/libexec/bin:$PATH"
-  - ls "$(brew --prefix)/opt/$PYTHON_VERSION/libexec/bin"
-  - pip install setuptools==45.0.0
-  - '[ "$PYTHON_VERSION" = "python2" ] &&  pip install virtualenv|| :'
-  - '[ "$PYTHON_VERSION" = "python2" ] &&  virtualenv -p python py_env|| :'
-  - '[ "$PYTHON_VERSION" = "python3" ] &&  python -m venv py_env|| :'
+  - python3 -m venv py_env
   - source py_env/bin/activate
-  - python --version
-  - which python
-  - which pip
-  - type pip
-  - pip install --upgrade pip
-  - '[ "$coveralls" = "coveralls-python" ] && pip install coveralls || :'
-  - '[ "$coveralls" = "python-coveralls" ] && pip -e . --use-mirrors || :'
+  - python3 --version
+  - which python3
+  - which pip3
+  - type pip3
+  - pip3 install --upgrade pip3
+  - '[ "$coveralls" = "coveralls-python" ] && pip3 install coveralls || :'
+  - '[ "$coveralls" = "python-coveralls" ] && pip3 -e . --use-mirrors || :'
   - which ruby
   - brew install ruby
   - hash -r
